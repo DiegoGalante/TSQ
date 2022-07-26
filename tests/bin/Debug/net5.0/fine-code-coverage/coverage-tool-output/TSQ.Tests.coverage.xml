@@ -1,24 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.5" branch-rate="1" version="1.9" timestamp="1658856949" lines-covered="5" lines-valid="10" branches-covered="0" branches-valid="0">
+<coverage line-rate="0.6363" branch-rate="1" version="1.9" timestamp="1658863021" lines-covered="7" lines-valid="11" branches-covered="0" branches-valid="0">
   <sources>
     <source>C:\Users\diego\</source>
   </sources>
   <packages>
-    <package name="TSQ" line-rate="0.2" branch-rate="1" complexity="2">
+    <package name="TSQ" line-rate="0.5" branch-rate="1" complexity="2">
       <classes>
-        <class name="TSQ.Program" filename="Documents\Diego\Dev\GitHub\TSQ\src\Program.cs" line-rate="0.2" branch-rate="1" complexity="2">
+        <class name="TSQ.Program" filename="Documents\Diego\Dev\GitHub\TSQ\src\Program.cs" line-rate="0.5" branch-rate="1" complexity="2">
           <methods>
             <method name="Main" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
                 <line number="8" hits="0" branch="False" />
                 <line number="9" hits="0" branch="False" />
                 <line number="10" hits="0" branch="False" />
-                <line number="11" hits="0" branch="False" />
               </lines>
             </method>
             <method name="Somar" signature="(System.Int32,System.Int32)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="13" hits="1" branch="False" />
+                <line number="14" hits="1" branch="False" />
+                <line number="15" hits="1" branch="False" />
               </lines>
             </method>
           </methods>
@@ -26,8 +27,9 @@
             <line number="8" hits="0" branch="False" />
             <line number="9" hits="0" branch="False" />
             <line number="10" hits="0" branch="False" />
-            <line number="11" hits="0" branch="False" />
             <line number="13" hits="1" branch="False" />
+            <line number="14" hits="1" branch="False" />
+            <line number="15" hits="1" branch="False" />
           </lines>
         </class>
       </classes>

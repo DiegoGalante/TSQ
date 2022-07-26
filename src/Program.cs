@@ -6,10 +6,12 @@ namespace TSQ
     {
         public static void Main()
         {
-            Console.WriteLine("Ola mundo");
-            Console.WriteLine(Somar(1, 1));
+            Console.WriteLine($"Resultado da soma: {Somar(1, 1)}");
         }
 
-        public static int Somar(int a, int b) => a + b;
+        public static int Somar(int a, int b)
+        {
+            return a + b;
+        }
     }
 }
