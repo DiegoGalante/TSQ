@@ -11,7 +11,7 @@ namespace TSQ
 
         public static int Somar(int a, int b)
         {
-            return a + b;
+            return a + b; 
         }
     }
 }
