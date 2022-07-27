@@ -10,7 +10,7 @@ jobs:
     name: Build
     runs-on: windows-latest
     steps:
-      - name: Set up JDK 11
+      - name: Inicializando java JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
@@ -19,18 +19,18 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Setup dotnet
+      - name: Inicializando o dotnet
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '5.x'
             
-      - name: Install dependencies
+      - name: Instalando dependencias
         run: dotnet restore
         
-      - name: Build
+      - name: Realizando o Build
         run: dotnet build
         
-      - name: Test with the dotnet CLI
+      - name: Realizando os testes com o dotnet CLI
         run: dotnet test
 
       - name: Cache SonarCloud packages
@@ -48,14 +48,14 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
 
-      - name: Install SonarCloud scanner
+      - name: Instalando o SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-      - name: Build and analyze
+      - name: Realizando o Build e análise do sonarscanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
