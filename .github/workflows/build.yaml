@@ -3,8 +3,10 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     name: Build
@@ -23,8 +25,11 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '5.x'
+  
+      - name: Instalando Dependência Coverlet
+        run: dotnet tool install --global coverlet.console
             
-      - name: Instalando dependencias
+      - name: Restaurando o(s) projeto(s)
         run: dotnet restore
         
       - name: Realizando o Build
@@ -61,6 +66,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"DiegoGalante_TSQ" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" 
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"DiegoGalante_TSQ" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
           dotnet build --no-incremental
+          coverlet .\TSQ\tests\bin\Debug\net5.0\TSQ.dll --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
