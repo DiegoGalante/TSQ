@@ -25,8 +25,11 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '5.x'
+  
+      - name: Instalando Dependência Coverlet
+        run: dotnet tool install --global coverlet.console
             
-      - name: Instalando dependencias
+      - name: Restaurando os pacotes
         run: dotnet restore
         
       - name: Realizando o Build
@@ -63,7 +66,17 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"DiegoGalante_TSQ" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"DiegoGalante_TSQ" /o:"diegogalante" 
+          /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.cs.opencover.reportsPaths=coverage.xml
+          
           dotnet build --no-incremental
-          coverlet --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
+          
+          coverlet .\CovExample.Tests\bin\Debug\net6.0\CovExample.Tests.dll 
+          --target "dotnet" 
+          --targetargs "test --no-build"
+          -f=opencover 
+          -o="coverage.xml"
+
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
