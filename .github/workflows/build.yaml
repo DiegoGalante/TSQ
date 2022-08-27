@@ -29,6 +29,11 @@ jobs:
       - name: Instalando Dependência Global da Cobertura de Código
         run: dotnet tool install --global coverlet.console
 
+      - name: Instalando Dependência OpenCover
+        run: dotnet add package OpenCover --version 4.7.1221
+
+
+
       - name: Restaurando o(s) projeto(s)
         run: dotnet restore
         
@@ -68,6 +73,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
-          dotnet build --no-incremental
-          coverlet .\tests\bin\Debug\net5.0\*.Tests.dll --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
+          dotnet build --no-incremental & .\tools\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test --no-build" -returntargetcode -output:coverage.xml -register:user
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
