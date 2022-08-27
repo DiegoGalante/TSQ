@@ -40,7 +40,7 @@ jobs:
         run: dotnet build
         
       - name: Realizando os testes com o dotnet CLI
-        run: dotnet test
+        run: dotnet test --collect:"XPlat Code Coverage"
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
