@@ -28,7 +28,9 @@ jobs:
   
       - name: Instalando Dependência Global da Cobertura de Código
         run: dotnet tool install --global coverlet.console
-             dotnet tool install --global coverlet.msbuild
+
+      - name: Instalando Dependência Global da Cobertura de Código
+        run: dotnet tool install --global coverlet.msbuild
 
       - name: Restaurando o(s) projeto(s)
         run: dotnet restore
