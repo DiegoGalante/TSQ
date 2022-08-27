@@ -26,8 +26,9 @@ jobs:
         with:
           dotnet-version: '5.x'
   
-      - name: Instalando Dependência Coverlet
-        run: dotnet tool install --global coverlet.console
+      - name: Instalando Dependência Global da Cobertura de Código
+        #run: dotnet tool install --global coverlet.console
+        run: dotnet tool install --global dotnet-coverage
             
       - name: Restaurando o(s) projeto(s)
         run: dotnet restore
@@ -60,13 +61,24 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
+      #- name: Realizando o Build e análise do sonarscanner
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #  shell: powershell
+      #  run: |
+      #    .\.sonar\scanner\dotnet-sonarscanner begin /k:"DiegoGalante_TSQ" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
+      #    dotnet build --no-incremental
+      #    coverlet .\tests\bin\Debug\net5.0\TSQ.Tests.dll --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
+      #    .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+      
       - name: Realizando o Build e análise do sonarscanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"DiegoGalante_TSQ" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
-          dotnet build --no-incremental
-          coverlet .\tests\bin\Debug\net5.0\TSQ.Tests.dll --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          dotnet sonarscanner begin /k:"${{ secrets.SONAR_TOKEN }}" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths=coverage.xml
+          dotnet build --no-incremental & C:\tools\opencover\OpenCover.Console.exe -target:"dotnet.exe"  -targetargs:"test --no-build" -returntargetcode -output:coverage.xml -register:user
+          dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
