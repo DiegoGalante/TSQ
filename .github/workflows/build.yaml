@@ -1,4 +1,4 @@
-name: CI TSQ - Build, Teste & SonnarCloud
+ï»¿name: CI TSQ - Build, Teste & SonnarCloud
 on:
   push:
     branches:
@@ -26,7 +26,7 @@ jobs:
         with:
           dotnet-version: '5.x'
   
-      - name: Instalando Dependência Global da Cobertura de Código
+      - name: Instalando DependÃªncia Global da Cobertura de CÃ³digo
         run: dotnet tool install --global coverlet.console
 
       - name: Restaurando o(s) projeto(s)
@@ -60,7 +60,7 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-      - name: Realizando o build e a análise do sonarscanner
+      - name: Realizando o build e a anÃ¡lise do sonarscanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -69,5 +69,5 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
           dotnet build --no-incremental
-          coverlet *.Tests.dll --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
+          coverlet .\tests\bin\Debug\net5.0\*.Tests.dll --target "dotnet" --targetargs "test --no-build" -f=opencover -o="coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
