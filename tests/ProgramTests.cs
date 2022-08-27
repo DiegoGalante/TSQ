@@ -15,6 +15,7 @@ namespace TSQ.Tests
 
         [Theory(DisplayName = "Subtrai dois inteiros")]
         [InlineData(30, 20, 10)]
+        [InlineData(10, 10, 0)]
         public void Program_Subtrair(int a, int b, int resultado)
         {
             var res = Program.Subtrair(a, b);
