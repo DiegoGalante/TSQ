@@ -29,11 +29,10 @@ jobs:
       - name: Instalando Dependência Global da Cobertura de Código
         #run: dotnet tool install --global coverlet.console
         run: dotnet tool install --global dotnet-coverage
-             dotnet tool install --global dotnet-sonarscanner --version 5.3.1
 
       - name: Instalando Dependência Global SonarScanner
         #run: dotnet tool install --global coverlet.console
-        run: dotnet tool install --global dotnet-sonarscanner --version 5.3.1
+        run: dotnet tool install --global dotnet-sonarscanner
             
       - name: Restaurando o(s) projeto(s)
         run: dotnet restore
