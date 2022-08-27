@@ -84,5 +84,5 @@ jobs:
         run: |
           dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
           dotnet build --no-incremental
-          dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.xml'
+          dotnet-coverage collect 'dotnet test' -f xml  -o 'coverage.cobertura.xml'
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
