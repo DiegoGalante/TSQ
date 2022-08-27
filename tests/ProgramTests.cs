@@ -31,5 +31,14 @@ namespace TSQ.Tests
 
             Assert.Equal(res, resultado);
         }
+
+        [Theory(DisplayName = "Escreve o texto passado por parametro")]
+        [InlineData("abc", "abc")]
+        public void Program_RetornarString(string texto, string resultado)
+        {
+            var res = Program.RetornarString(texto);
+
+            Assert.Equal(res, resultado);
+        }
     }
 }

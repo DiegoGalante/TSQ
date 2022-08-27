@@ -23,5 +23,10 @@ namespace TSQ
         {
             return a * b;
         }
+
+        public static string RetornarString(string texto)
+        {
+            return texto;
+        }
     }
 }
