@@ -23,6 +23,8 @@ jobs:
 
       - name: Inicializando o dotnet
         uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '5.x'
         
       - name: Realizando os testes com o dotnet CLI
         run: dotnet test
