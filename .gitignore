@@ -356,4 +356,4 @@ MigrationBackup/
 .sonarqube/
 
 #Obj Tests folder
-[Tt]ests/[Oo]bj/*
+[Tt]ests/obj/
