@@ -23,7 +23,7 @@ jobs:
 
       - name: Inicializando o dotnet
         uses: actions/setup-dotnet@v2
-
+        
       - name: Restaurando a Solução
         run: dotnet restore TSQ.sln /p:RestoreUseStaticGraphEvaluation=true
 
