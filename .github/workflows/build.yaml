@@ -25,16 +25,12 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '5.x'
-
-
-      - name: Restaurando o(s) projeto(s)
-        run: dotnet restore
         
       - name: Realizando o Build
-        run: dotnet build
+        run: dotnet build --no-incremental
         
       - name: Realizando os testes com o dotnet CLI
-        run: dotnet test
+        run: dotnet test --no-build --no-restore
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
@@ -66,5 +62,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
-          dotnet build --no-incremental ; .\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test --no-build" -returntargetcode -output:coverage.xml -register:user
+          .\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test --no-build" -returntargetcode -output:coverage.xml -register:user
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
