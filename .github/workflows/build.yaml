@@ -23,11 +23,14 @@ jobs:
 
       - name: Inicializando o dotnet
         uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '5.x'
+        #with:
+        #  dotnet-version: '5.x'
         
-      - name: Realizando os testes com o dotnet CLI
-        run: dotnet test
+      #- name: Rodando os Testes
+      #  run: dotnet test --configuration release
+
+      - name: Restaurando a Solução
+        run: dotnet restore TSQ.sln
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
@@ -58,6 +61,6 @@ jobs:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
-          dotnet build --no-incremental --no-restore ; .\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test --no-build" -returntargetcode -output:coverage.xml -register:user
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions=**/obj/**,**/*.dll /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml /d:sonar.cs.vscoveragexml.reportsPaths=**/coverage.opencover.xml /d:sonar.cs.vstest.reportsPaths=**/*.trx 
+          dotnet test --configuration release --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect "Code Coverage" /p:Exclude=[xunit.*]*
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
