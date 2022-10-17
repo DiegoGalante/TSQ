@@ -30,7 +30,7 @@ jobs:
       #  run: dotnet test --configuration release
 
       - name: Restaurando a Solução
-        run: dotnet restore /p:RestoreUseStaticGraphEvaluation=true
+        run: dotnet restore TSQ.sln /p:RestoreUseStaticGraphEvaluation=true
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
