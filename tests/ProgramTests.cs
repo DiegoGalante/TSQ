@@ -1,9 +1,18 @@
+using System;
 using Xunit;
 
 namespace TSQ.Tests
 {
     public class ProgramTests
     {
+        [Fact(DisplayName = "Main Test")]
+        public void MainTest()
+        {
+            Program.Main();
+
+            Assert.Null(null);
+        }
+
         [Theory(DisplayName = "Soma dois inteiros")]
         [InlineData(10, 10, 20)]
         public void Program_Somar(int a, int b, int resultado)
