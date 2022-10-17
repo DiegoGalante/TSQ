@@ -23,11 +23,6 @@ jobs:
 
       - name: Inicializando o dotnet
         uses: actions/setup-dotnet@v2
-        #with:
-        #  dotnet-version: '5.x'
-        
-      #- name: Rodando os Testes
-      #  run: dotnet test --configuration release
 
       - name: Restaurando a Solução
         run: dotnet restore TSQ.sln /p:RestoreUseStaticGraphEvaluation=true
