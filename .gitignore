@@ -349,11 +349,11 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-#bat files
+#Sonarqube
+.sonarqube
+
+#Bat files
 *.bat
 
-#sonarqube folder
-.sonarqube/
-
-#Obj Tests folder
-[Tt]ests/obj/
+#Coverage Files
+coverage.opencover.xml

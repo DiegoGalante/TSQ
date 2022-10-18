@@ -22,8 +22,4 @@
     <ProjectReference Include="..\src\TSQ.csproj" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
-  </PropertyGroup>
-
 </Project>

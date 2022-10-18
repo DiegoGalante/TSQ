@@ -4,9 +4,5 @@
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
-  </PropertyGroup>
-
+  
 </Project>
