@@ -46,7 +46,7 @@ jobs:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         shell: bash
         run: |
-          dotnet tool install --global dotnet-sonarscanner --version 5.8.0
+          dotnet tool install dotnet-sonarscanner
           dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions=**/obj/**,**/*.dll /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml /d:sonar.cs.vscoveragexml.reportsPaths=**/coverage.opencover.xml /d:sonar.cs.vstest.reportsPaths=**/*.trx 
           dotnet test --configuration release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect "Code Coverage" /p:Exclude=[xunit.*]*
           dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
