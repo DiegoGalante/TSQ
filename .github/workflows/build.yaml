@@ -24,7 +24,22 @@ jobs:
       - name: Inicializando o dotnet
         uses: actions/setup-dotnet@v2
 
-      - name: Instalando o SonarCloud scanner
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+
+      - name: Instalando o dotnet-sonarscanner
         shell: bash
         run: dotnet tool install --global dotnet-sonarscanner --version 5.8.0
 
