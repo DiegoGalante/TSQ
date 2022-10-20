@@ -39,9 +39,6 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
 
-      - name: Restaurando o(s) projeto(s)
-        run: dotnet restore /p:RestoreLockedMode=true
-
       - name: Realizando o build e a análise do sonarscanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -51,5 +48,5 @@ jobs:
         run: |
           dotnet tool install --global dotnet-sonarscanner
           dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /o:"diegogalante" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions=**/obj/**,**/*.dll /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml /d:sonar.cs.vscoveragexml.reportsPaths=**/coverage.opencover.xml /d:sonar.cs.vstest.reportsPaths=**/*.trx 
-          dotnet test --configuration release --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect "Code Coverage" /p:Exclude=[xunit.*]*
+          dotnet test --configuration release /p:RestoreLockedMode=true /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect "Code Coverage" /p:Exclude=[xunit.*]*
           dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
