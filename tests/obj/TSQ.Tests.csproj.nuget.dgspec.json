@@ -18,6 +18,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
+          "C:\\Users\\diego\\Documents\\Diego\\Dev\\GitHub\\TSQ\\NuGet.Config",
           "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -26,11 +27,8 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/TypingHard/d4c93848-a1a0-443d-acf6-db9e9db5d3d0/_packaging/TypingHardPackages/nuget/v3/index.json": {},
-          "https://pkgs.dev.azure.com/size-zink/Zink/_packaging/ZinkPackages/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -42,6 +40,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "restoreLockedMode": true
         }
       },
       "frameworks": {
@@ -81,6 +83,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
+          "C:\\Users\\diego\\Documents\\Diego\\Dev\\GitHub\\TSQ\\NuGet.Config",
           "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -89,11 +92,8 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/TypingHard/d4c93848-a1a0-443d-acf6-db9e9db5d3d0/_packaging/TypingHardPackages/nuget/v3/index.json": {},
-          "https://pkgs.dev.azure.com/size-zink/Zink/_packaging/ZinkPackages/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -109,6 +109,10 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true",
+          "restoreLockedMode": true
         }
       },
       "frameworks": {
